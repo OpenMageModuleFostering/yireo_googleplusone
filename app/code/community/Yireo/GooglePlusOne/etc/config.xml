@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * GooglePlusOne plugin for Magento 
+ *
+ * @category    design_default
+ * @package     Yireo_GooglePlusOne
+ * @author      Yireo
+ * @copyright   Copyright (C) 2014 Yireo (http://www.yireo.com/)
+ * @license     Open Source License (OSL v3)
+ */
+-->
+<config>
+    <modules>
+        <Yireo_GooglePlusOne>
+            <version>1.0.11</version>
+        </Yireo_GooglePlusOne>
+    </modules>
+
+    <global>
+        <blocks>
+            <googleplusone>
+                <class>Yireo_GooglePlusOne_Block</class>
+            </googleplusone>
+        </blocks>
+
+        <helpers>
+            <googleplusone>
+                <class>Yireo_GooglePlusOne_Helper</class>
+            </googleplusone>
+        </helpers>
+
+        <models>
+            <googleplusone>
+                <class>Yireo_GooglePlusOne_Model</class>
+            </googleplusone>
+        </models>
+
+        <events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <googleplusone_observer>
+                        <type>singleton</type>
+                        <class>Yireo_GooglePlusOne_Model_Observer</class>
+                        <method>coreBlockAbstractToHtmlAfter</method>
+                    </googleplusone_observer>
+                </observers>
+            </core_block_abstract_to_html_after>
+            <controller_action_predispatch>
+                <observers>
+                    <googleplusone_controller_action_predispatch>
+                        <type>singleton</type>
+                        <class>Yireo_GooglePlusOne_Model_Observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </googleplusone_controller_action_predispatch>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <googleplusone>
+                    <file>googleplusone.xml</file>
+                </googleplusone>
+            </updates>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Yireo_GooglePlusOne>
+                    <files>
+                        <default>Yireo_GooglePlusOne.csv</default>
+                    </files>
+                </Yireo_GooglePlusOne>
+            </modules>
+        </translate>
+
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <googleplusone translate="title" module="googleplusone">
+                                            <title>GooglePlusOne</title>
+                                        </googleplusone>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>
